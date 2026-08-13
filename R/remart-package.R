@@ -5,12 +5,12 @@
 ## usethis namespace: end
 NULL
 
+# Backport from R 4.4.0
+`%||%` <- function(x, y) {
+  if (is.null(x)) y else x
+}
+
 # Backport from R 4.6.0
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0
-}
-
-# Backport of the base R null-coalescing operator (R >= 4.4.0)
-`%||%` <- function(x, y) {
-  if (is.null(x)) y else x
 }
