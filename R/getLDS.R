@@ -142,7 +142,8 @@ getLDS <- function(
       names(row_target) <- paste0(names(row_target), ".1")
 
       cbind(row_source, row_target)
-    })
+    }) |>
+      do.call(rbind, args = _)
   })
 
   df <- do.call(rbind, rows)
@@ -156,5 +157,6 @@ getLDS <- function(
     return(empty_df)
   }
 
+  rownames(df) <- NULL
   return(df)
 }

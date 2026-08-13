@@ -95,12 +95,13 @@ getBM <- function(
       }
       transcripts <- gene$Transcript
       if (!needs_transcripts || is.null(transcripts)) {
-        list(.remart_bm_row(attributes, gene = gene))
+        .remart_bm_row(attributes, gene = gene)
       } else {
         lapply(
           transcripts,
           function(x) .remart_bm_row(attributes, gene = gene, transcript = x)
-        )
+        ) |>
+          do.call(rbind, args = _)
       }
     })
   } else {
@@ -113,7 +114,7 @@ getBM <- function(
         return(NULL)
       }
       gene <- if (needs_genes) genes[[transcript$Parent]] else NULL
-      list(.remart_bm_row(attributes, gene = gene, transcript = transcript))
+      .remart_bm_row(attributes, gene = gene, transcript = transcript)
     })
   }
 
@@ -128,6 +129,7 @@ getBM <- function(
     return(empty_df)
   }
   
+  rownames(df) <- NULL
   return(df)
 }
 
