@@ -127,19 +127,18 @@ getBM <- function(
     })
   }
 
-  rows <- unlist(rows, recursive = FALSE)
-
-  if (length(rows) == 0) {
-    empty_cols <- stats::setNames(
-      replicate(length(attributes), character(0), simplify = FALSE),
-      attributes
-    )
-    return(as.data.frame(empty_cols))
+  df <- do.call(rbind, rows)
+  
+  if (nrow(df) == 0) {
+    # Empty df but with the expected columns. 
+    # Having a stable output format makes it easier to post-process.
+    empty_df <- vector("list", length(attributes)) |>
+      setNames(attributes) |>
+      list2DF()
+    return(empty_df)
   }
-
-  df <- unique(do.call(rbind, rows))
-  rownames(df) <- NULL
-  df
+  
+  return(df)
 }
 
 #' Build a single-row data.frame of `attributes` from parsed lookup/id objects
@@ -147,7 +146,7 @@ getBM <- function(
 .remart_bm_row <- function(attributes, gene = NULL, transcript = NULL) {
   values <- lapply(attributes, .remart_bm_attr, gene = gene, transcript = transcript)
   names(values) <- attributes
-  as.data.frame(values, stringsAsFactors = FALSE)
+  as.data.frame(values)
 }
 
 #' Extract the value of a single `biomaRt`-style attribute from parsed

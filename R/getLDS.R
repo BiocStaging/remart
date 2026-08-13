@@ -145,18 +145,16 @@ getLDS <- function(
     })
   })
 
-  rows <- Filter(Negate(is.null), unlist(rows, recursive = FALSE))
+  df <- do.call(rbind, rows)
 
-  cols <- c(attributes, paste0(attributesL, ".1"))
-  if (length(rows) == 0) {
-    empty_cols <- stats::setNames(
-      replicate(length(cols), character(0), simplify = FALSE),
-      cols
-    )
-    return(as.data.frame(empty_cols))
+  if (nrow(df) == 0) {
+    # Empty df but with the expected columns. 
+    # Having a stable output format makes it easier to post-process.
+    empty_df <- vector("list", length(attributes)) |>
+      setNames(attributes) |>
+      list2DF()
+    return(empty_df)
   }
 
-  df <- unique(do.call(rbind, rows))
-  rownames(df) <- NULL
-  df
+  return(df)
 }
