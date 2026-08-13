@@ -76,20 +76,20 @@ getBM <- function(
     stop("`values` must contain at least one identifier.")
   }
 
-  needs_transcripts <- any(attributes %in% transcript_level_attributes)
+  needs_transcripts <- any(attributes %in% transcript_level_attributes) || filters == "ensembl_transcript_id"
+
+  ids <- .remart_lookup_id(values, expand = needs_transcripts)
+
+  missing_ids <- values[lengths(ids) == 0L]
+  if (length(missing_ids) > 0L) {
+    warning(
+      "The following identifiers were not found and will be ignored: ",
+      toString(missing_ids)
+    )
+  }
 
   if (filters == "ensembl_gene_id") {
-    genes <- .remart_lookup_id(values, expand = needs_transcripts)
-
-    missing_ids <- values[lengths(genes) == 0L]
-    if (length(missing_ids) > 0L) {
-      warning(
-        "The following identifiers were not found and will be ignored: ",
-        toString(missing_ids)
-      )
-    }
-
-    rows <- lapply(genes, function(gene) {
+    rows <- lapply(ids, function(gene) {
       if (is.null(gene)) {
         return(NULL)
       }
@@ -104,21 +104,11 @@ getBM <- function(
       }
     })
   } else {
-    transcripts <- .remart_lookup_id(values, expand = TRUE)
-
-    missing_ids <- values[lengths(transcripts) == 0L]
-    if (length(missing_ids) > 0L) {
-      warning(
-        "The following identifiers were not found and will be ignored: ",
-        toString(missing_ids)
-      )
-    }
-
     needs_genes <- any(attributes %notin% transcript_level_attributes)
-    gene_ids <- unique(unlist(lapply(transcripts, `[[`, "Parent")))
+    gene_ids <- unique(unlist(lapply(ids, `[[`, "Parent")))
     genes <- if (needs_genes) .remart_lookup_id(gene_ids, expand = FALSE) else list()
 
-    rows <- lapply(transcripts, function(transcript) {
+    rows <- lapply(ids, function(transcript) {
       if (is.null(transcript)) {
         return(NULL)
       }
