@@ -48,7 +48,8 @@ getBM <- function(
     "ensembl_gene_id", "ensembl_transcript_id", "ensembl_peptide_id",
     "external_gene_name", "description", "chromosome_name",
     "start_position", "end_position", "strand",
-    "gene_biotype", "transcript_biotype", "version"
+    "gene_biotype", "transcript_biotype", "version",
+    "hgnc_symbol"
   )
 
   if (length(filters) != 1L || filters %notin% supported_filters) {
@@ -160,6 +161,7 @@ getBM <- function(
     end_position = main$end %||% NA_integer_,
     strand = main$strand %||% NA_integer_,
     gene_biotype = gene$biotype %||% NA_character_,
+    hgnc_symbol = gene$display_name %||% NA_character_,
     transcript_biotype = transcript$biotype %||% NA_character_,
     version = (transcript %||% gene)$version %||% NA_integer_,
     stop("Unsupported attribute: ", attr)
