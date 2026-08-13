@@ -37,7 +37,7 @@ getSequence <- function(
   }
 
   if (!missing(id)) {
-    if (type %notin% c("ensembl_gene_id", "ensembl_transcript_id")) {
+    if (type %notin% c("ensembl_gene_id", "ensembl_transcript_id", "ensembl_peptide_id")) {
       stop("Only Ensembl IDs (ENS...) are supported at the moment")
     }
     if (!is.list(id) && length(id) == 1) {
