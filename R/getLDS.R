@@ -139,9 +139,8 @@ getLDS <- function(
       if ("ensembl_peptide_id" %in% attributesL) {
         row_target$ensembl_peptide_id <- h$target$protein_id %||% NA_character_
       }
-      names(row_target) <- paste0(names(row_target), ".1")
 
-      cbind(row_source, row_target)
+      data.frame(row_source, row_target)
     }) |>
       do.call(rbind, args = _)
   })
