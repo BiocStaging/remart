@@ -138,7 +138,7 @@ getBM <- function(
 .remart_bm_row <- function(attributes, gene = NULL, transcript = NULL) {
   values <- lapply(attributes, .remart_bm_attr, gene = gene, transcript = transcript)
   names(values) <- attributes
-  as.data.frame(values)
+  list2DF(values)
 }
 
 #' Extract the value of a single `biomaRt`-style attribute from parsed
