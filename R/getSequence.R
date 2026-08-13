@@ -57,8 +57,9 @@ getSequence <- function(
     seq_type <- switch(
       seqType,
       "gene_exon_intron" = "genomic",
+      "cdna" = "cdna",
       "peptide" = "protein", # see example use in DominoEffect package
-      stop("Invalid seqType. Must be one of 'gene_exon_intron', or 'peptide'.")
+      stop("Invalid seqType. Must be one of 'gene_exon_intron', 'cdna', or 'peptide'.")
     )
 
     httr2::request("https://rest.ensembl.org/") |> 
