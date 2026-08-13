@@ -64,7 +64,7 @@ getSequence <- function(
     httr2::request("https://rest.ensembl.org/") |> 
       httr2::req_url_path("sequence/id") |> 
       httr2::req_method("POST") |> 
-      httr2::req_user_agent("remart R package") |> 
+      httr2::req_user_agent(REMART_USER_AGENT) |> 
       httr2::req_body_json(list(ids = id, type = seq_type)) |> 
       httr2::req_perform() |>
       httr2::resp_body_json(simplifyVector = TRUE)

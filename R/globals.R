@@ -1,0 +1,1 @@
+REMART_USER_AGENT <- "remart R package"

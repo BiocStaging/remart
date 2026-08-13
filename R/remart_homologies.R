@@ -9,7 +9,7 @@
       target_species = target_species,
       `content-type` = "application/json"
     ) |>
-    httr2::req_user_agent("remart R package") |>
+    httr2::req_user_agent(REMART_USER_AGENT) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = FALSE)
 
