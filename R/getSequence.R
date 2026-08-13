@@ -54,7 +54,7 @@ getSequence <- function(
       req$expand_3prime <- downstream
     }
 
-    seq_type <- switch(
+    req$type <- switch(
       seqType,
       "gene_exon_intron" = "genomic",
       "cdna" = "cdna",
@@ -66,7 +66,7 @@ getSequence <- function(
       httr2::req_url_path("sequence/id") |> 
       httr2::req_method("POST") |> 
       httr2::req_user_agent(REMART_USER_AGENT) |> 
-      httr2::req_body_json(list(ids = id, type = seq_type)) |> 
+      httr2::req_body_json(req) |> 
       httr2::req_perform() |>
       httr2::resp_body_json(simplifyVector = TRUE)
   }
