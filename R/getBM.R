@@ -33,37 +33,46 @@ getBM <- function(
   values = "",
   ...
 ) {
+  stopifnot(
+    is.character(attributes),
+    is.character(filters),
+    is.character(values)
+  )
+
   supported_filters <- c("ensembl_gene_id", "ensembl_transcript_id")
+  transcript_level_attributes <- c(
+    "ensembl_transcript_id", "ensembl_peptide_id", "transcript_biotype"
+  )
   supported_attributes <- c(
+    transcript_level_attributes,
     "ensembl_gene_id", "ensembl_transcript_id", "ensembl_peptide_id",
     "external_gene_name", "description", "chromosome_name",
     "start_position", "end_position", "strand",
     "gene_biotype", "transcript_biotype", "version"
   )
-  transcript_level_attributes <- c(
-    "ensembl_transcript_id", "ensembl_peptide_id", "transcript_biotype"
-  )
 
-  if (length(filters) != 1 || filters %notin% supported_filters) {
+  if (length(filters) != 1L || filters %notin% supported_filters) {
     stop(
       "Only a single filter is supported at the moment, and must be one of: ",
-      paste(supported_filters, collapse = ", ")
+      toString(supported_filters)
     )
   }
 
   unsupported_attributes <- setdiff(attributes, supported_attributes)
-  if (length(unsupported_attributes) > 0) {
+  if (length(unsupported_attributes) > 0L) {
     stop(
       "Unsupported attribute(s): ",
-      paste(unsupported_attributes, collapse = ", "),
-      ". Supported attributes are: ",
-      paste(supported_attributes, collapse = ", ")
+      toString(unsupported_attributes),
+      ".\nSupported attributes are: ",
+      toString(supported_attributes),
+      ".\nPlease file an issue at ",
+      "https://github.com/Huber-group-EMBL/remart/issues",
+      " if you would like us to add support for new attributes."
     )
   }
 
-  values <- as.character(values)
-  values <- values[values != ""]
-  if (length(values) == 0) {
+  values <- values[nzchar(values)]
+  if (length(values) == 0L) {
     stop("`values` must contain at least one identifier.")
   }
 
@@ -72,11 +81,11 @@ getBM <- function(
   if (filters == "ensembl_gene_id") {
     genes <- .remart_lookup_id(values, expand = needs_transcripts)
 
-    missing_ids <- values[vapply(genes, is.null, logical(1))]
-    if (length(missing_ids) > 0) {
+    missing_ids <- values[lengths(genes) == 0L]
+    if (length(missing_ids) > 0L) {
       warning(
         "The following identifiers were not found and will be ignored: ",
-        paste(missing_ids, collapse = ", ")
+        toString(missing_ids)
       )
     }
 
@@ -101,7 +110,7 @@ getBM <- function(
     if (length(missing_ids) > 0) {
       warning(
         "The following identifiers were not found and will be ignored: ",
-        paste(missing_ids, collapse = ", ")
+        toString(missing_ids)
       )
     }
 

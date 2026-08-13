@@ -42,6 +42,16 @@ getLDS <- function(
   speciesL,
   ...
 ) {
+  stopifnot(
+    is.character(attributes),
+    is.character(filters),
+    is.character(values),
+    is.character(attributesL),
+    is.character(filtersL),
+    is.character(valuesL),
+    is.character(speciesL)
+  )
+
   supported_attributes <- c(
     "ensembl_gene_id", "ensembl_peptide_id", "external_gene_name",
     "description", "chromosome_name", "start_position", "end_position",
@@ -49,13 +59,13 @@ getLDS <- function(
   )
 
   if (length(filters) != 1 || filters != "ensembl_gene_id") {
-    stop("Only filters = \"ensembl_gene_id\" is supported at the moment.")
+    stop('Only filters = "ensembl_gene_id" is supported at the moment.')
   }
 
   if (length(filtersL) != 1 || filtersL %notin% c("", supported_attributes)) {
     stop(
-      "filtersL must be \"\" or one of: ",
-      paste(supported_attributes, collapse = ", ")
+      'filtersL must be the empty string "" or one of: ',
+      toString(supported_attributes)
     )
   }
 
@@ -63,22 +73,21 @@ getLDS <- function(
   if (length(unsupported_attributes) > 0) {
     stop(
       "Unsupported attribute(s): ",
-      paste(unsupported_attributes, collapse = ", "),
+      toString(unsupported_attributes),
       ". Supported attributes are: ",
-      paste(supported_attributes, collapse = ", ")
+      toString(supported_attributes)
     )
   }
 
   if (missing(speciesL) || length(speciesL) != 1 || speciesL == "") {
     stop(
-      "`speciesL` (e.g. \"mouse\" or \"mus_musculus\"), identifying the ",
+      '`speciesL` (e.g. "mouse" or "mus_musculus"), identifying the ',
       "target species, must be provided. It replaces the `martL` argument ",
       "used in biomaRt."
     )
   }
 
-  values <- as.character(values)
-  values <- values[values != ""]
+  values <- values[nzchar(values)]
   if (length(values) == 0) {
     stop("`values` must contain at least one identifier.")
   }
@@ -89,7 +98,7 @@ getLDS <- function(
   if (length(missing_ids) > 0) {
     warning(
       "The following identifiers were not found and will be ignored: ",
-      paste(missing_ids, collapse = ", ")
+      toString(missing_ids)
     )
   }
 
@@ -114,7 +123,7 @@ getLDS <- function(
     lapply(homologies, function(h) {
       target_gene <- target_genes[[h$target$id]]
 
-      if (filtersL != "") {
+      if (nzchar(filtersL)) {
         filter_value <- .remart_bm_attr(filtersL, gene = target_gene)
         if (filter_value %notin% valuesL) {
           return(NULL)
