@@ -106,8 +106,8 @@ getBM <- function(
   } else {
     transcripts <- .remart_lookup_id(values, expand = TRUE)
 
-    missing_ids <- values[vapply(transcripts, is.null, logical(1))]
-    if (length(missing_ids) > 0) {
+    missing_ids <- values[lengths(transcripts) == 0L]
+    if (length(missing_ids) > 0L) {
       warning(
         "The following identifiers were not found and will be ignored: ",
         toString(missing_ids)
