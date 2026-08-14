@@ -67,12 +67,15 @@ getSequence <- function(
       )
     )
 
-    httr2::request("https://rest.ensembl.org/") |>
+    res <- httr2::request("https://rest.ensembl.org/") |>
       httr2::req_url_path("sequence/id") |>
       httr2::req_method("POST") |>
       httr2::req_user_agent(REMART_USER_AGENT) |>
       httr2::req_body_json(req) |>
       httr2::req_perform() |>
       httr2::resp_body_json(simplifyVector = TRUE)
+
+    # The columns are seemingly returned in a random(?)/unstable order.
+    res <- res[sort(names(res), method = "radix")]
   }
 }
