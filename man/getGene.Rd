@@ -14,7 +14,8 @@ listFilters function.  Examples are entrezgene_id, hgnc_symbol (for hugo
 gene symbol), ensembl_gene_id, unigene, agilentprobe, affy_hg_u133_plus_2,
 refseq_dna, etc.}
 
-\item{...}{Ignored. Used to catch no longer necessary parameters such as \code{mart} from \pkg{biomaRt} functions.}
+\item{...}{Ignored. Used to catch no longer necessary parameters such as
+\code{mart} from \pkg{biomaRt} functions.}
 }
 \description{
 Retries gene annotation information from Ensembl.

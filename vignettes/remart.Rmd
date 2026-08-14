@@ -238,7 +238,8 @@ calling `getBM()`:
 #| label: biomart-workflow
 #| eval: false
 
-# A biomaRt workflow. This example is not actually run as the biomart service is unstable
+# A biomaRt workflow.
+# This example is not actually run as the biomart service is unstable.
 gene_ids <- c("ENSG00000157764", "ENSG00000004939")
 attrs <- c(
   "ensembl_gene_id",

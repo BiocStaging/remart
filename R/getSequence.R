@@ -73,7 +73,8 @@ getSequence <- function(
     "cdna" = "cdna",
     "peptide" = "protein", # see example use in DominoEffect package
     stop(
-      "Invalid seqType. Must be one of 'gene_exon_intron', 'cdna', or 'peptide'."
+      "Invalid seqType. ",
+      "Must be one of 'gene_exon_intron', 'cdna', or 'peptide'."
     )
   )
 

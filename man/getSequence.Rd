@@ -39,7 +39,8 @@ basepairs to the output.}
 \item{downstream}{To add the downstream sequence of a specified number of
 basepairs to the output.}
 
-\item{...}{Ignored. Used to catch no longer necessary parameters such as \code{mart} from \pkg{biomaRt} functions.}
+\item{...}{Ignored. Used to catch no longer necessary parameters such as
+\code{mart} from \pkg{biomaRt} functions.}
 }
 \description{
 Get Sequences from Ensembl
