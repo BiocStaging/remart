@@ -8,8 +8,22 @@
 \description{
 This package aims to offer a drop-in replacement to biomaRt using the same interface but the more modern and better maintained APIs provided by Ensembl.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://huber-group-embl.github.io/remart/}
+  \item \url{https://github.com/Huber-group-EMBL/remart}
+  \item Report bugs at \url{https://github.com/Huber-group-EMBL/remart/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Hugo Gruson \email{hugo.gruson@embl.de} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID})
+
+Authors:
+\itemize{
+  \item Hugo Gruson \email{hugo.gruson@embl.de} (\href{https://orcid.org/0000-0002-4094-1476}{ORCID})
+}
 
 Other contributors:
 \itemize{

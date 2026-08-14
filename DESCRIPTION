@@ -13,12 +13,14 @@ Description: This package aims to offer a drop-in replacement to biomaRt
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 Suggests: 
     knitr,
-    rmarkdown
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
 Imports: 
     httr2
 URL: https://huber-group-embl.github.io/remart/, https://github.com/Huber-group-EMBL/remart
 BugReports: https://github.com/Huber-group-EMBL/remart/issues
+Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.0
