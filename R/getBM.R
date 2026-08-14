@@ -43,14 +43,7 @@ getBM <- function(
   transcript_level_attributes <- c(
     "ensembl_transcript_id", "ensembl_peptide_id", "transcript_biotype"
   )
-  supported_attributes <- c(
-    transcript_level_attributes,
-    "ensembl_gene_id", "ensembl_transcript_id", "ensembl_peptide_id",
-    "external_gene_name", "description", "chromosome_name",
-    "start_position", "end_position", "strand",
-    "gene_biotype", "transcript_biotype", "version",
-    "hgnc_symbol"
-  )
+  supported_attributes <- listAttributes()
 
   if (length(filters) != 1L || filters %notin% supported_filters) {
     stop(
