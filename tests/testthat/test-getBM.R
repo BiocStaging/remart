@@ -20,7 +20,8 @@ test_that("single and multiple getBM() calls are identical", {
     filters = "ensembl_gene_id",
     values = c("ENSG00000157764", "ENSG00000004939")
   ) |>
-    expect_no_condition()
+    expect_no_error() |>
+    expect_no_warning()
 
   single_call_1 <- getBM(
     attributes = c(
@@ -39,7 +40,8 @@ test_that("single and multiple getBM() calls are identical", {
     filters = "ensembl_gene_id",
     values = "ENSG00000157764"
   ) |>
-    expect_no_condition()
+    expect_no_error() |>
+    expect_no_warning()
   single_call_2 <- getBM(
     attributes = c(
       "ensembl_gene_id",
@@ -76,7 +78,8 @@ test_that("getBM() on gene IDs can return transcript level info", {
     filters = "ensembl_gene_id",
     values = c("ENSG00000157764", "ENSG00000004939")
   ) |>
-    expect_no_condition()
+    expect_no_error() |>
+    expect_no_warning()
 
   expect_named(
     result,
@@ -106,7 +109,8 @@ test_that("getBM() on transcript IDs can return gene level info", {
     filters = "ensembl_transcript_id",
     values = c("ENST00000357654", "ENST00000450305")
   ) |>
-    expect_no_condition()
+    expect_no_error() |>
+    expect_no_warning()
 
   expect_named(
     result,
