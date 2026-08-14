@@ -1,0 +1,145 @@
+skip_on_bioc()
+skip_on_ci()
+
+test_that("single and multiple getBM() calls are identical", {
+  # Gene attributes only
+  multi_call <- getBM(
+    attributes = c(
+      "ensembl_gene_id",
+      "external_gene_name",
+      "description",
+      "chromosome_name",
+      "start_position",
+      "end_position",
+      "strand",
+      "gene_biotype",
+      "transcript_biotype",
+      "version",
+      "hgnc_symbol"
+    ),
+    filters = "ensembl_gene_id",
+    values = c("ENSG00000157764", "ENSG00000004939")
+  ) |>
+    expect_no_condition()
+
+  single_call_1 <- getBM(
+    attributes = c(
+      "ensembl_gene_id",
+      "external_gene_name",
+      "description",
+      "chromosome_name",
+      "start_position",
+      "end_position",
+      "strand",
+      "gene_biotype",
+      "transcript_biotype",
+      "version",
+      "hgnc_symbol"
+    ),
+    filters = "ensembl_gene_id",
+    values = "ENSG00000157764"
+  ) |>
+    expect_no_condition()
+  single_call_2 <- getBM(
+    attributes = c(
+      "ensembl_gene_id",
+      "external_gene_name",
+      "description",
+      "chromosome_name",
+      "start_position",
+      "end_position",
+      "strand",
+      "gene_biotype",
+      "transcript_biotype",
+      "version",
+      "hgnc_symbol"
+    ),
+    filters = "ensembl_gene_id",
+    values = "ENSG00000004939"
+  )
+
+  expect_identical(
+    multi_call,
+    rbind(single_call_1, single_call_2)
+  )
+})
+
+test_that("getBM() on gene IDs can return transcript level info", {
+  result <- getBM(
+    attributes = c(
+      "ensembl_gene_id",
+      "ensembl_transcript_id",
+      "ensembl_peptide_id",
+      "external_gene_name",
+      "description"
+    ),
+    filters = "ensembl_gene_id",
+    values = c("ENSG00000157764", "ENSG00000004939")
+  ) |>
+    expect_no_condition()
+
+  expect_named(
+    result,
+    c(
+      "ensembl_gene_id",
+      "ensembl_transcript_id",
+      "ensembl_peptide_id",
+      "external_gene_name",
+      "description"
+    )
+  )
+
+  expect_setequal(
+    result$ensembl_gene_id,
+    c("ENSG00000157764", "ENSG00000004939")
+  )
+})
+
+test_that("getBM() on transcript IDs can return gene level info", {
+  result <- getBM(
+    attributes = c(
+      "ensembl_transcript_id",
+      "ensembl_gene_id",
+      "external_gene_name",
+      "description"
+    ),
+    filters = "ensembl_transcript_id",
+    values = c("ENST00000357654", "ENST00000450305")
+  ) |>
+    expect_no_condition()
+
+  expect_named(
+    result,
+    c(
+      "ensembl_transcript_id",
+      "ensembl_gene_id",
+      "external_gene_name",
+      "description"
+    )
+  )
+
+  expect_setequal(
+    result$ensembl_transcript_id,
+    c("ENST00000357654", "ENST00000450305")
+  )
+})
+
+test_that("getBM() fails with unsupported input", {
+  expect_error(
+    getBM(
+      attributes = c("ensembl_gene_id", "external_gene_name"),
+      filters = "unsupported_filter",
+      values = c("ENSG00000157764", "ENSG00000004939")
+    ),
+    "Only a single filter is supported at the moment, and must be one of: ensembl_gene_id, ensembl_transcript_id"
+  )
+
+  expect_error(
+    getBM(
+      attributes = c("ensembl_gene_id", "unsupported_attribute"),
+      filters = "ensembl_gene_id",
+      values = c("ENSG00000157764", "ENSG00000004939")
+    ),
+    "Unsupported attribute\\(s\\): unsupported_attribute"
+  )
+})
