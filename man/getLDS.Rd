@@ -11,8 +11,8 @@ getLDS(
   attributesL,
   filtersL = "",
   valuesL = "",
-  speciesL,
-  ...
+  ...,
+  speciesL
 )
 }
 \arguments{
@@ -32,15 +32,15 @@ using the function \code{\link[biomaRt:listFilters]{listFilters()}}.}
 
 \item{valuesL}{Values for the linked dataset filters}
 
+\item{...}{Ignored. Used to catch no longer necessary parameters such as
+\code{mart}, \code{martL}, \code{verbose}, \code{uniqueRows} and \code{bmHeader} from
+\pkg{biomaRt} functions.}
+
 \item{speciesL}{Ensembl name (e.g. \code{"mouse"} or \code{"mus_musculus"}) of the
 species to look up orthologues in. This replaces the \code{martL} argument
 used in \pkg{biomaRt}, as connections to Ensembl datasets are no longer
 needed, but the species of the linked dataset can not be inferred from
 \code{attributesL}/\code{filtersL}/\code{valuesL} alone.}
-
-\item{...}{Ignored. Used to catch no longer necessary parameters such as
-\code{mart}, \code{martL}, \code{verbose}, \code{uniqueRows} and \code{bmHeader} from
-\pkg{biomaRt} functions.}
 }
 \value{
 A data frame containing source-species and target-species

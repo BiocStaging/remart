@@ -42,8 +42,8 @@ getLDS <- function(
   attributesL,
   filtersL = "",
   valuesL = "",
-  speciesL,
-  ...
+  ...,
+  speciesL
 ) {
   stopifnot(
     is.character(attributes),
