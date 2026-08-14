@@ -4,6 +4,17 @@
 #' @param ... Ignored. Used to catch no longer necessary parameters such as
 #'   `mart` from \pkg{biomaRt} functions.
 #'
+#' @returns A data frame containing the following gene annotations for the
+#'   requested IDs:
+#'   - `ensembl_gene_id`
+#'   - `hgnc_symbol`
+#'   - `description`
+#'   - `chromosome_name`
+#'   - `band` (not available from Ensembl REST API, will be filled with NA)
+#'   - `strand`
+#'   - `start_position`
+#'   - `end_position`
+#'
 #' @export
 #'
 #' @examples

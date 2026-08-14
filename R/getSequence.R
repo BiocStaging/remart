@@ -3,6 +3,9 @@
 #' @inheritParams biomaRt::getSequence
 #' @inheritParams getGene
 #'
+#' @returns A data frame containing the requested sequences and their
+#'   associated metadata.
+#'
 #' @export
 #'
 #' @examples

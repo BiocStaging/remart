@@ -17,6 +17,20 @@ refseq_dna, etc.}
 \item{...}{Ignored. Used to catch no longer necessary parameters such as
 \code{mart} from \pkg{biomaRt} functions.}
 }
+\value{
+A data frame containing the following gene annotations for the
+requested IDs:
+\itemize{
+\item \code{ensembl_gene_id}
+\item \code{hgnc_symbol}
+\item \code{description}
+\item \code{chromosome_name}
+\item \code{band} (not available from Ensembl REST API, will be filled with NA)
+\item \code{strand}
+\item \code{start_position}
+\item \code{end_position}
+}
+}
 \description{
 Retries gene annotation information from Ensembl.
 }

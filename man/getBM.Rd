@@ -22,6 +22,13 @@ the filters argument.}
 \code{mart}, \code{checkFilters}, \code{verbose}, \code{uniqueRows}, \code{bmHeader}, \code{quote} and
 \code{useCache} from \pkg{biomaRt} functions.}
 }
+\value{
+A data frame containing the requested gene or transcript
+annotations, with one column for each requested attribute.
+The number of rows does not necessarily match the number of
+requested identifiers, as some attributes can have multiple values
+for a single identifier (e.g. a gene with multiple transcripts).
+}
 \description{
 Retrieve gene/transcript annotations from Ensembl
 }

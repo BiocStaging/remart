@@ -3,6 +3,9 @@
 #' @param ... Ignored. Used to catch no longer necessary parameters from the
 #'   \pkg{biomaRt} functions.
 #'
+#' @returns A character vector of supported attributes to be used in [getBM()]
+#'   and [getLDS()].
+#'
 #' @export
 #'
 #' @examples

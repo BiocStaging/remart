@@ -19,6 +19,12 @@
 #' `chromosome_name`, `start_position`, `end_position`, `strand`,
 #' `gene_biotype`, `transcript_biotype`, `version`.
 #'
+#' @returns A data frame containing the requested gene or transcript
+#'   annotations, with one column for each requested attribute.
+#'   The number of rows does not necessarily match the number of
+#'   requested identifiers, as some attributes can have multiple values
+#'   for a single identifier (e.g. a gene with multiple transcripts).
+#'
 #' @export
 #'
 #' @examples

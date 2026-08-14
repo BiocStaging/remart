@@ -42,6 +42,10 @@ needed, but the species of the linked dataset can not be inferred from
 \code{mart}, \code{martL}, \code{verbose}, \code{uniqueRows} and \code{bmHeader} from
 \pkg{biomaRt} functions.}
 }
+\value{
+A data frame containing source-species and target-species
+ortholog annotations.
+}
 \description{
 Retrieve orthologous gene annotations across two species
 }

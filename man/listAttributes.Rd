@@ -10,6 +10,10 @@ listAttributes(...)
 \item{...}{Ignored. Used to catch no longer necessary parameters from the
 \pkg{biomaRt} functions.}
 }
+\value{
+A character vector of supported attributes to be used in \code{\link[=getBM]{getBM()}}
+and \code{\link[=getLDS]{getLDS()}}.
+}
 \description{
 List supported attributes
 }

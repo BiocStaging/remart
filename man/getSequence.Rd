@@ -42,6 +42,10 @@ basepairs to the output.}
 \item{...}{Ignored. Used to catch no longer necessary parameters such as
 \code{mart} from \pkg{biomaRt} functions.}
 }
+\value{
+A data frame containing the requested sequences and their
+associated metadata.
+}
 \description{
 Get Sequences from Ensembl
 }

@@ -22,6 +22,9 @@
 #'
 #' Only `filters = "ensembl_gene_id"` is supported.
 #'
+#' @returns A data frame containing source-species and target-species
+#'   ortholog annotations.
+#'
 #' @export
 #'
 #' @examples
