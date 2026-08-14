@@ -41,7 +41,9 @@ getBM <- function(
 
   supported_filters <- c("ensembl_gene_id", "ensembl_transcript_id")
   transcript_level_attributes <- c(
-    "ensembl_transcript_id", "ensembl_peptide_id", "transcript_biotype"
+    "ensembl_transcript_id",
+    "ensembl_peptide_id",
+    "transcript_biotype"
   )
   supported_attributes <- listAttributes()
 
@@ -70,7 +72,8 @@ getBM <- function(
     stop("`values` must contain at least one identifier.")
   }
 
-  needs_transcripts <- any(attributes %in% transcript_level_attributes) || filters == "ensembl_transcript_id"
+  needs_transcripts <- any(attributes %in% transcript_level_attributes) ||
+    filters == "ensembl_transcript_id"
 
   ids <- .remart_lookup_id(values, expand = needs_transcripts)
 
@@ -101,7 +104,11 @@ getBM <- function(
   } else {
     needs_genes <- any(attributes %notin% transcript_level_attributes)
     gene_ids <- unique(unlist(lapply(ids, `[[`, "Parent")))
-    genes <- if (needs_genes) .remart_lookup_id(gene_ids, expand = FALSE) else list()
+    genes <- if (needs_genes) {
+      .remart_lookup_id(gene_ids, expand = FALSE)
+    } else {
+      list()
+    }
 
     rows <- lapply(ids, function(transcript) {
       if (is.null(transcript)) {
@@ -113,16 +120,16 @@ getBM <- function(
   }
 
   df <- do.call(rbind, rows)
-  
+
   if (nrow(df) == 0) {
-    # Empty df but with the expected columns. 
+    # Empty df but with the expected columns.
     # Having a stable output format makes it easier to post-process.
     empty_df <- vector("list", length(attributes)) |>
       setNames(attributes) |>
       list2DF()
     return(empty_df)
   }
-  
+
   rownames(df) <- NULL
   return(df)
 }
@@ -130,7 +137,12 @@ getBM <- function(
 #' Build a single-row data.frame of `attributes` from parsed lookup/id objects
 #' @noRd
 .remart_bm_row <- function(attributes, gene = NULL, transcript = NULL) {
-  values <- lapply(attributes, .remart_bm_attr, gene = gene, transcript = transcript)
+  values <- lapply(
+    attributes,
+    .remart_bm_attr,
+    gene = gene,
+    transcript = transcript
+  )
   names(values) <- attributes
   list2DF(values)
 }

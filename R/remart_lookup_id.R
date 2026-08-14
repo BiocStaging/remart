@@ -7,7 +7,7 @@
 #'
 #' @returns A named list of parsed JSON objects, keyed by `ids`. Missing IDs
 #'   are returned as `NULL` entries.
-#' 
+#'
 #' @noRd
 .remart_lookup_id <- function(ids, expand = FALSE) {
   ids <- unique(as.character(ids))
@@ -16,7 +16,10 @@
     httr2::req_url_path("/lookup/id") |>
     httr2::req_method("POST") |>
     httr2::req_user_agent(REMART_USER_AGENT) |>
-    httr2::req_body_json(list(ids = as.list(ids), expand = as.integer(expand))) |>
+    httr2::req_body_json(list(
+      ids = as.list(ids),
+      expand = as.integer(expand)
+    )) |>
     httr2::req_perform() |>
     httr2::resp_body_json(simplifyVector = FALSE)
 

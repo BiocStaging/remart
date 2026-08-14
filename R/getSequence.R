@@ -1,10 +1,10 @@
 #' Get Sequences from Ensembl
-#' 
+#'
 #' @inheritParams biomaRt::getSequence
 #' @inheritParams getGene
-#' 
+#'
 #' @export
-#' 
+#'
 #' @examples
 #' remart::getSequence(
 #'   seqType = "gene_exon_intron",
@@ -37,7 +37,10 @@ getSequence <- function(
   }
 
   if (!missing(id)) {
-    if (type %notin% c("ensembl_gene_id", "ensembl_transcript_id", "ensembl_peptide_id")) {
+    if (
+      type %notin%
+        c("ensembl_gene_id", "ensembl_transcript_id", "ensembl_peptide_id")
+    ) {
       stop("Only Ensembl IDs (ENS...) are supported at the moment")
     }
     if (!is.list(id) && length(id) == 1) {
@@ -59,14 +62,16 @@ getSequence <- function(
       "gene_exon_intron" = "genomic",
       "cdna" = "cdna",
       "peptide" = "protein", # see example use in DominoEffect package
-      stop("Invalid seqType. Must be one of 'gene_exon_intron', 'cdna', or 'peptide'.")
+      stop(
+        "Invalid seqType. Must be one of 'gene_exon_intron', 'cdna', or 'peptide'."
+      )
     )
 
-    httr2::request("https://rest.ensembl.org/") |> 
-      httr2::req_url_path("sequence/id") |> 
-      httr2::req_method("POST") |> 
-      httr2::req_user_agent(REMART_USER_AGENT) |> 
-      httr2::req_body_json(req) |> 
+    httr2::request("https://rest.ensembl.org/") |>
+      httr2::req_url_path("sequence/id") |>
+      httr2::req_method("POST") |>
+      httr2::req_user_agent(REMART_USER_AGENT) |>
+      httr2::req_body_json(req) |>
       httr2::req_perform() |>
       httr2::resp_body_json(simplifyVector = TRUE)
   }

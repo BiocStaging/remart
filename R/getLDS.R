@@ -53,9 +53,15 @@ getLDS <- function(
   )
 
   supported_attributes <- c(
-    "ensembl_gene_id", "ensembl_peptide_id", "external_gene_name",
-    "description", "chromosome_name", "start_position", "end_position",
-    "strand", "gene_biotype"
+    "ensembl_gene_id",
+    "ensembl_peptide_id",
+    "external_gene_name",
+    "description",
+    "chromosome_name",
+    "start_position",
+    "end_position",
+    "strand",
+    "gene_biotype"
   )
 
   if (length(filters) != 1 || filters != "ensembl_gene_id") {
@@ -69,7 +75,10 @@ getLDS <- function(
     )
   }
 
-  unsupported_attributes <- setdiff(c(attributes, attributesL), supported_attributes)
+  unsupported_attributes <- setdiff(
+    c(attributes, attributesL),
+    supported_attributes
+  )
   if (length(unsupported_attributes) > 0) {
     stop(
       "Unsupported attribute(s): ",
@@ -148,7 +157,7 @@ getLDS <- function(
   df <- do.call(rbind, rows)
 
   if (nrow(df) == 0) {
-    # Empty df but with the expected columns. 
+    # Empty df but with the expected columns.
     # Having a stable output format makes it easier to post-process.
     empty_df <- vector("list", length(attributes)) |>
       setNames(attributes) |>

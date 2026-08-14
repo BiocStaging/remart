@@ -1,16 +1,16 @@
 #' Retries gene annotation information from Ensembl.
-#' 
+#'
 #' @inheritParams biomaRt::getGene
 #' @param ... Ignored. Used to catch no longer necessary parameters such as `mart` from \pkg{biomaRt} functions.
-#' 
+#'
 #' @export
-#' 
+#'
 #' @examples
 #' remart::getGene(
 #'   "ENSG00000157764",
 #'   type = "ensembl_gene_id"
 #' )
-#' 
+#'
 #' ids <- c(
 #'  "ENSG00000003987",
 #'  "ENSG00000004939"
@@ -32,8 +32,10 @@ getGene <- function(
   }
 
   res <- .remart_lookup_id(id, expand = FALSE)
-  
-  warning("'band' column information is not available from the Ensembl REST API, it will be filled with NA values.")
+
+  warning(
+    "'band' column information is not available from the Ensembl REST API, it will be filled with NA values."
+  )
   df <- lapply(res, function(x) {
     data.frame(
       ensembl_gene_id = x$id,
@@ -45,11 +47,10 @@ getGene <- function(
       start_position = x$start,
       end_position = x$end
     )
-  }) |> 
+  }) |>
     do.call(rbind, args = _)
-  
+
   rownames(df) <- NULL
 
   return(df)
 }
-
