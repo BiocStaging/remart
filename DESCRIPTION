@@ -8,7 +8,10 @@ Authors@R: c(
   )
 Description: This package aims to offer a drop-in replacement to biomaRt
     using the same interface but the more modern and better maintained
-    APIs provided by Ensembl.
+    APIs provided by Ensembl. It provides an easy solution for compatibility
+    with minimal changes for existing projects and packages. New projects
+    may prefer to use another approach which is not constrained by the need
+    for backward compatibility with biomaRt.
 License: MIT + file LICENSE
 URL: https://huber-group-embl.github.io/remart/,
     https://github.com/Huber-group-EMBL/remart
