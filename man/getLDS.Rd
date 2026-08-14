@@ -62,7 +62,7 @@ Supported filters/attributes (for both \code{filters}/\code{attributes} and
 Only \code{filters = "ensembl_gene_id"} is supported.
 }
 \examples{
-remart::getLDS(
+getLDS(
   attributes = c("ensembl_gene_id", "external_gene_name"),
   filters = "ensembl_gene_id",
   values = "ENSG00000157764",

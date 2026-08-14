@@ -48,7 +48,7 @@ Supported attributes: \code{ensembl_gene_id}, \code{ensembl_transcript_id},
 }
 \examples{
 attribs <- c("ensembl_gene_id", "external_gene_name", "chromosome_name")
-remart::getBM(
+getBM(
   attributes = attribs,
   filters = "ensembl_gene_id",
   values = c("ENSG00000157764", "ENSG00000004939")
