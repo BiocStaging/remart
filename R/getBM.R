@@ -40,11 +40,7 @@ getBM <- function(
   )
 
   supported_filters <- c("ensembl_gene_id", "ensembl_transcript_id")
-  transcript_level_attributes <- c(
-    "ensembl_transcript_id",
-    "ensembl_peptide_id",
-    "transcript_biotype"
-  )
+  transcript_level_attributes <- .listTranscriptLevelAttributes()
   supported_attributes <- listAttributes()
 
   if (length(filters) != 1L || filters %notin% supported_filters) {

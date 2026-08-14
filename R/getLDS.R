@@ -52,17 +52,8 @@ getLDS <- function(
     is.character(speciesL)
   )
 
-  supported_attributes <- c(
-    "ensembl_gene_id",
-    "ensembl_peptide_id",
-    "external_gene_name",
-    "description",
-    "chromosome_name",
-    "start_position",
-    "end_position",
-    "strand",
-    "gene_biotype"
-  )
+  # TODO: add support for transcript-level attributes
+  supported_attributes <- .listGeneLevelAttributes()
 
   if (length(filters) != 1 || filters != "ensembl_gene_id") {
     stop('Only filters = "ensembl_gene_id" is supported at the moment.')

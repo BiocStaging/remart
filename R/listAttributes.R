@@ -9,13 +9,16 @@
 #' listAttributes()
 #'
 listAttributes <- function(...) {
-  transcript_level_attributes <- c(
-    "ensembl_transcript_id",
-    "ensembl_peptide_id",
-    "transcript_biotype"
-  )
-  supported_attributes <- c(
-    transcript_level_attributes,
+  c(
+    .listGeneLevelAttributes(),
+    .listTranscriptLevelAttributes()
+  ) |>
+    unique() |>
+    sort(method = "radix")
+}
+
+.listGeneLevelAttributes <- function() {
+  c(
     "ensembl_gene_id",
     "external_gene_name",
     "description",
@@ -28,5 +31,18 @@ listAttributes <- function(...) {
     "version",
     "hgnc_symbol"
   )
-  return(supported_attributes)
+}
+
+.listTranscriptLevelAttributes <- function() {
+  c(
+    "ensembl_gene_id",
+    "ensembl_transcript_id",
+    "ensembl_peptide_id",
+    "transcript_biotype",
+    "chromosome_name",
+    "start_position",
+    "end_position",
+    "strand",
+    "version"
+  )
 }
