@@ -18,6 +18,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>"
 )
+
+# Copied from testthat:::has_internet()
+ensembl_offline <- !is.null(curl::nslookup(
+  "rest.ensembl.org",
+  error = FALSE
+))
 ```
 
 # Overview
@@ -82,6 +88,7 @@ connection to Ensembl is handled internally, so a `mart` object is not required.
 
 ```{r}
 #| label: gene-annotations
+#| eval: !expr '!ensembl_offline'
 
 gene_ids <- c("ENSG00000157764", "ENSG00000004939")
 
@@ -111,6 +118,7 @@ gene can have multiple transcripts, this may return multiple rows for one gene.
 
 ```{r}
 #| label: transcript-annotations
+#| eval: !expr '!ensembl_offline'
 
 transcript_annotations <- getBM(
   attributes = c(
@@ -131,6 +139,7 @@ is transcript-oriented:
 
 ```{r}
 #| label: transcript-filter
+#| eval: !expr '!ensembl_offline'
 
 getBM(
   attributes = c(
@@ -150,6 +159,7 @@ convenient gene-level interface:
 
 ```{r}
 #| label: get-gene
+#| eval: !expr '!ensembl_offline'
 
 getGene(
   id = c("ENSG00000157764", "ENSG00000004939"),
@@ -171,7 +181,7 @@ For example, a cDNA sequence can be retrieved for a transcript as follows:
 
 ```{r}
 #| label: cdna-sequence
-#| eval: false
+#| eval: !expr '!ensembl_offline'
 
 cdna <- getSequence(
   seqType = "cdna",
@@ -186,6 +196,7 @@ Upstream and downstream bases can be requested for supported sequence queries:
 
 ```{r}
 #| label: expanded-sequence
+#| eval: !expr '!ensembl_offline'
 
 extended_cdna <- getSequence(
   seqType = "cdna",
@@ -212,7 +223,7 @@ The following example searches for mouse orthologues of a human gene:
 
 ```{r}
 #| label: orthologues
-#| eval: false
+#| eval: !expr '!ensembl_offline'
 
 orthologues <- getLDS(
   attributes = c("ensembl_gene_id", "external_gene_name"),
@@ -262,7 +273,7 @@ query can usually be adapted directly:
 
 ```{r}
 #| label: remart-workflow
-#| eval: false
+#| eval: !expr '!ensembl_offline'
 
 gene_ids <- c("ENSG00000157764", "ENSG00000004939")
 attrs <- c(

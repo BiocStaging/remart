@@ -1,5 +1,6 @@
 skip_on_ci()
 skip_on_bioc()
+skip_if_offline("rest.ensembl.org")
 
 test_that("single and multiple getSequence() calls are identical", {
   multi_call <- getSequence(

@@ -1,5 +1,6 @@
 skip_on_bioc()
 skip_on_ci()
+skip_if_offline("rest.ensembl.org")
 
 test_that("single and multiple getBM() calls are identical", {
   # Gene attributes only

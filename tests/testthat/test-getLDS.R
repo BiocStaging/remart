@@ -1,3 +1,7 @@
+skip_on_ci()
+skip_on_bioc()
+skip_if_offline("rest.ensembl.org")
+
 test_that("getLDS() works with homologies", {
   res <- getLDS(
     attributes = c("ensembl_gene_id", "hgnc_symbol", "external_gene_name"),
