@@ -12,6 +12,7 @@ getLDS(
   filtersL = "",
   valuesL = "",
   ...,
+  species = NULL,
   speciesL = NULL
 )
 }
@@ -36,6 +37,12 @@ using the function \code{\link[biomaRt:listFilters]{listFilters()}}.}
 \code{mart}, \code{martL}, \code{verbose}, \code{uniqueRows} and \code{bmHeader} from
 \pkg{biomaRt} functions.}
 
+\item{species}{Ensembl name (e.g. \code{"mouse"} or \code{"mus_musculus"}) of the
+species to look Ensembl IDs for if, e.g., \code{external_gene_name} is provided
+in \code{filters}. In \pkg{biomaRt}, this was inferred from the \code{mart}
+argument, but since this argument is no longer used, the species must be
+provided explicitly.}
+
 \item{speciesL}{Ensembl name (e.g. \code{"mouse"} or \code{"mus_musculus"}) of the
 species to look up orthologues in. This replaces the \code{martL} argument
 used in \pkg{biomaRt}, as connections to Ensembl datasets are no longer
@@ -59,13 +66,24 @@ Supported filters/attributes (for both \code{filters}/\code{attributes} and
 \code{external_gene_name}, \code{description}, \code{chromosome_name},
 \code{start_position}, \code{end_position}, \code{strand}, \code{gene_biotype}.
 
-Only \code{filters = "ensembl_gene_id"} is supported.
+Only \code{"ensembl_gene_id"} and \code{"external_gene_name"} are supported for \code{filter}.
 }
 \examples{
 getLDS(
   attributes = c("ensembl_gene_id", "external_gene_name"),
   filters = "ensembl_gene_id",
   values = "ENSG00000157764",
+  attributesL = c("ensembl_gene_id", "external_gene_name"),
+  speciesL = "mouse"
+)
+
+# It is also possible to a gene symbol, but a species must be specified, as
+# gene symbols are not unique across species.
+getLDS(
+  attributes = c("ensembl_gene_id", "external_gene_name"),
+  filters = "external_gene_name",
+  values = "APOE",
+  species = "human",
   attributesL = c("ensembl_gene_id", "external_gene_name"),
   speciesL = "mouse"
 )

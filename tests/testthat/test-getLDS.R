@@ -23,3 +23,26 @@ test_that("getLDS() works with homologies", {
     )
   )
 })
+
+test_that("getLDS() works with gene symbols", {
+  res <- getLDS(
+    attributes = c("ensembl_gene_id", "hgnc_symbol", "external_gene_name"),
+    filters = "external_gene_name",
+    values = c("APOE", "MAPT"),
+    species = "human",
+    attributesL = c("ensembl_gene_id"),
+    speciesL = "mouse"
+  ) |>
+    expect_no_error() |>
+    expect_no_warning()
+
+  expect_named(
+    res,
+    c(
+      "ensembl_gene_id",
+      "hgnc_symbol",
+      "external_gene_name",
+      "ensembl_gene_id.1"
+    )
+  )
+})

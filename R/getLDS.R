@@ -4,6 +4,7 @@
 #' @param ... Ignored. Used to catch no longer necessary parameters such as
 #'   `mart`, `martL`, `verbose`, `uniqueRows` and `bmHeader` from
 #'   \pkg{biomaRt} functions.
+#' @inheritParams getBM species
 #' @param speciesL Ensembl name (e.g. `"mouse"` or `"mus_musculus"`) of the
 #'   species to look up orthologues in. This replaces the `martL` argument
 #'   used in \pkg{biomaRt}, as connections to Ensembl datasets are no longer
@@ -20,7 +21,7 @@
 #' `external_gene_name`, `description`, `chromosome_name`,
 #' `start_position`, `end_position`, `strand`, `gene_biotype`.
 #'
-#' Only `filters = "ensembl_gene_id"` is supported.
+#' Only `"ensembl_gene_id"` and `"external_gene_name"` are supported for `filter`.
 #'
 #' @returns A data frame containing source-species and target-species
 #'   ortholog annotations.
@@ -35,6 +36,17 @@
 #'   attributesL = c("ensembl_gene_id", "external_gene_name"),
 #'   speciesL = "mouse"
 #' )
+#'
+#' # It is also possible to a gene symbol, but a species must be specified, as
+#' # gene symbols are not unique across species.
+#' getLDS(
+#'   attributes = c("ensembl_gene_id", "external_gene_name"),
+#'   filters = "external_gene_name",
+#'   values = "APOE",
+#'   species = "human",
+#'   attributesL = c("ensembl_gene_id", "external_gene_name"),
+#'   speciesL = "mouse"
+#' )
 getLDS <- function(
   attributes,
   filters = "",
@@ -43,6 +55,7 @@ getLDS <- function(
   filtersL = "",
   valuesL = "",
   ...,
+  species = NULL,
   speciesL = NULL
 ) {
   stopifnot(
@@ -52,14 +65,26 @@ getLDS <- function(
     is.character(attributesL),
     is.character(filtersL),
     is.character(valuesL),
+    is.null(species) || is.character(species),
     is.character(speciesL)
   )
 
   # TODO: add support for transcript-level attributes
+  ensembl_ids <- "ensembl_gene_id"
+  supported_filters <- c(ensembl_ids, "external_gene_name")
   supported_attributes <- .listGeneLevelAttributes()
 
-  if (length(filters) != 1 || filters != "ensembl_gene_id") {
-    stop('Only filters = "ensembl_gene_id" is supported at the moment.')
+  if (length(filters) != 1L || filters %notin% supported_filters) {
+    stop(
+      "Only a single filter is supported at the moment, and must be one of: ",
+      toString(supported_filters)
+    )
+  }
+  if (filters %notin% ensembl_ids && is.null(species)) {
+    stop(
+      "The `species` argument must be provided when using filters other than ",
+      toString(ensembl_ids)
+    )
   }
 
   if (length(filtersL) != 1 || filtersL %notin% c("", supported_attributes)) {
@@ -95,7 +120,15 @@ getLDS <- function(
     stop("`values` must contain at least one identifier.")
   }
 
-  source_genes <- .remart_lookup_id(values, expand = FALSE)
+  source_genes <- switch(
+    filters,
+    "ensembl_gene_id" = .remart_lookup_id(values, expand = FALSE),
+    "external_gene_name" = .remart_lookup_symbol(
+      values,
+      species = species,
+      expand = FALSE
+    )
+  )
 
   missing_ids <- values[vapply(source_genes, is.null, logical(1))]
   if (length(missing_ids) > 0) {
@@ -111,10 +144,18 @@ getLDS <- function(
       return(NULL)
     }
 
-    homologies <- .remart_homologies(
-      id,
-      species = gene$species,
-      target_species = speciesL
+    homologies <- switch(
+      filters,
+      "ensembl_gene_id" = .remart_homologies_id(
+        id,
+        species = gene$species,
+        target_species = speciesL
+      ),
+      "external_gene_name" = .remart_homologies_symbol(
+        id,
+        species = species,
+        target_species = speciesL
+      )
     )
     if (length(homologies) == 0) {
       return(NULL)
