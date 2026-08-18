@@ -10,8 +10,6 @@
 #'
 #' @noRd
 .remart_lookup_id <- function(ids, expand = FALSE) {
-  ids <- unique(as.character(ids))
-
   res <- httr2::request("https://rest.ensembl.org") |>
     httr2::req_url_path("/lookup/id") |>
     httr2::req_method("POST") |>
