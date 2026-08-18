@@ -175,14 +175,7 @@ getLDS <- function(
       }
 
       row_source <- .remart_bm_row(attributes, gene = gene)
-      if ("ensembl_peptide_id" %in% attributes) {
-        row_source$ensembl_peptide_id <- h$source$protein_id %||% NA_character_
-      }
-
       row_target <- .remart_bm_row(attributesL, gene = target_gene)
-      if ("ensembl_peptide_id" %in% attributesL) {
-        row_target$ensembl_peptide_id <- h$target$protein_id %||% NA_character_
-      }
 
       data.frame(row_source, row_target)
     }) |>
