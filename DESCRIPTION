@@ -21,6 +21,7 @@ Imports:
     stats
 Suggests: 
     BiocStyle,
+    curl,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
