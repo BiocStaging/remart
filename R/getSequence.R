@@ -35,17 +35,19 @@ getSequence <- function(
   downstream,
   ...
 ) {
-  if (!missing(id)) {
-    .getSequenceFromId(
-      id = id,
-      type = type,
-      seqType = seqType,
-      upstream = upstream,
-      downstream = downstream
-    )
-  }
   if (!missing(chromosome)) {
     stop("Not implemented yet")
+  }
+  if (!missing(id)) {
+    return(
+      .getSequenceFromId(
+        id = id,
+        type = type,
+        seqType = seqType,
+        upstream = upstream,
+        downstream = downstream
+      )
+    )
   }
 }
 
