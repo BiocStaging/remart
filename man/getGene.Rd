@@ -4,7 +4,7 @@
 \alias{getGene}
 \title{Retries gene annotation information from Ensembl.}
 \usage{
-getGene(id, type = "ensembl_gene_id", ...)
+getGene(id, type = "ensembl_gene_id", ..., species = NULL)
 }
 \arguments{
 \item{id}{vector of gene identifiers one wants to annotate}
@@ -16,6 +16,12 @@ refseq_dna, etc.}
 
 \item{...}{Ignored. Used to catch no longer necessary parameters such as
 \code{mart} from \pkg{biomaRt} functions.}
+
+\item{species}{Ensembl name (e.g. \code{"mouse"} or \code{"mus_musculus"}) of the
+species to look Ensembl IDs for if, e.g., \code{external_gene_name} is provided
+in \code{filters}. In \pkg{biomaRt}, this was inferred from the \code{mart}
+argument, but since this argument is no longer used, the species must be
+provided explicitly.}
 }
 \value{
 A data frame containing the following gene annotations for the

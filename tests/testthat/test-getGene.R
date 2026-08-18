@@ -47,6 +47,31 @@ test_that("single and multiple getGene() calls are identical", {
   )
 })
 
+test_that("getGene() works with gene symbols", {
+  expect_warning(
+    res <- getGene(
+      id = c("APOE", "MAPT"),
+      type = "external_gene_name",
+      species = "human"
+    ),
+    "'band' column information is not available"
+  )
+
+  expect_named(
+    res,
+    c(
+      "ensembl_gene_id",
+      "hgnc_symbol",
+      "description",
+      "chromosome_name",
+      "band",
+      "strand",
+      "start_position",
+      "end_position"
+    )
+  )
+})
+
 test_that("getGene() fails with unsupported ID types", {
   expect_error(
     getGene(
