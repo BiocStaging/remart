@@ -1,10 +1,13 @@
 ---
-title: "design"
-output: rmarkdown::html_vignette
+title: "Design principles for the remart package"
+date: "`r BiocStyle::doc_date()`"
+package: "`r BiocStyle::pkg_ver('remart')`"
 vignette: >
-  %\VignetteIndexEntry{design}
+  %\VignetteIndexEntry{"Design principles for the remart package"}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+output:
+  BiocStyle::html_document
 ---
 
 ## Function names, signatures, and return values
