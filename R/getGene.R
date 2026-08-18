@@ -49,14 +49,11 @@ getGene <- function(
     )
   }
 
-  res <- switch(
-    type,
-    "ensembl_gene_id" = .remart_lookup_id(id, expand = FALSE),
-    "external_gene_name" = .remart_lookup_symbol(
-      id,
-      species = species,
-      expand = FALSE
-    )
+  res <- .remart_lookup(
+    values = id,
+    filters = type,
+    species = species,
+    expand = FALSE
   )
 
   warning(

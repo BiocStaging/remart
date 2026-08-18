@@ -1,6 +1,7 @@
-#' Batch-fetch Ensembl feature metadata via the REST `lookup/id` endpoint
+#' Batch-fetch Ensembl feature metadata via the REST `lookup/id` or
+#' `lookup/symbol` endpoint
 #'
-#' @param ids character vector of Ensembl stable IDs (genes, transcripts or
+#' @param ids,symbols character vector of Ensembl stable IDs (genes, transcripts or
 #'   translations are all supported by this endpoint).
 #' @param expand if `TRUE`, also return the child features (e.g. transcripts
 #'   and translations for a gene).
@@ -9,6 +10,27 @@
 #'   are returned as `NULL` entries.
 #'
 #' @noRd
+.remart_lookup <- function(
+  values,
+  filters,
+  species = NULL,
+  expand = FALSE
+) {
+  switch(
+    filters,
+    "ensembl_gene_id" = .remart_lookup_id(
+      values,
+      expand = expand
+    ),
+    "ensembl_transcript_id" = .remart_lookup_id(values, expand = TRUE),
+    "external_gene_name" = .remart_lookup_symbol(
+      values,
+      species = species,
+      expand = expand
+    )
+  )
+}
+
 .remart_lookup_id <- function(ids, expand = FALSE) {
   res <- httr2::request("https://rest.ensembl.org") |>
     httr2::req_url_path("/lookup/id") |>

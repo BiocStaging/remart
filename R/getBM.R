@@ -102,18 +102,11 @@ getBM <- function(
     attributes %notin% .listGeneLevelAttributes()
   )
 
-  ids <- switch(
-    filters,
-    "ensembl_gene_id" = .remart_lookup_id(
-      values,
-      expand = has_transcript_attributes
-    ),
-    "ensembl_transcript_id" = .remart_lookup_id(values, expand = TRUE),
-    "external_gene_name" = .remart_lookup_symbol(
-      values,
-      species = species,
-      expand = has_transcript_attributes
-    )
+  ids <- .remart_lookup(
+    values = values,
+    filters = filters,
+    species = species,
+    expand = has_transcript_attributes
   )
 
   missing_ids <- values[lengths(ids) == 0L]

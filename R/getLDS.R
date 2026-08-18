@@ -120,14 +120,11 @@ getLDS <- function(
     stop("`values` must contain at least one identifier.")
   }
 
-  source_genes <- switch(
-    filters,
-    "ensembl_gene_id" = .remart_lookup_id(values, expand = FALSE),
-    "external_gene_name" = .remart_lookup_symbol(
-      values,
-      species = species,
-      expand = FALSE
-    )
+  source_genes <- .remart_lookup(
+    values = values,
+    filters = filters,
+    species = species,
+    expand = FALSE
   )
 
   missing_ids <- values[vapply(source_genes, is.null, logical(1))]
