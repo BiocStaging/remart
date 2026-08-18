@@ -151,7 +151,8 @@ getBM <- function(
     })
   }
 
-  df <- do.call(rbind, rows)
+  df <- do.call(rbind, rows) |>
+    as.data.frame()
 
   if (nrow(df) == 0) {
     # Empty df but with the expected columns.
@@ -169,14 +170,13 @@ getBM <- function(
 #' Build a single-row data.frame of `attributes` from parsed lookup/id objects
 #' @noRd
 .remart_bm_row <- function(attributes, gene = NULL, transcript = NULL) {
-  values <- lapply(
+  vapply(
     attributes,
     .remart_bm_attr,
     gene = gene,
-    transcript = transcript
+    transcript = transcript,
+    FUN.VALUE = character(1)
   )
-  names(values) <- attributes
-  list2DF(values)
 }
 
 #' Extract the value of a single `biomaRt`-style attribute from parsed
