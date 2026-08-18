@@ -39,9 +39,6 @@ getGene <- function(
   if (type != "ensembl_gene_id") {
     stop("Only Ensembl Gene IDs (ENS...) are supported at the moment")
   }
-  if (!is.list(id) && length(id) == 1) {
-    id <- list(id)
-  }
 
   res <- .remart_lookup_id(id, expand = FALSE)
 
