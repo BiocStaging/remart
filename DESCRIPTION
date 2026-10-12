@@ -16,6 +16,8 @@ License: MIT + file LICENSE
 URL: https://huber-group-embl.github.io/remart/,
     https://github.com/Huber-group-EMBL/remart
 BugReports: https://github.com/Huber-group-EMBL/remart/issues
+Depends:
+    R (>= 4.2.0)
 Imports: 
     httr2,
     stats
