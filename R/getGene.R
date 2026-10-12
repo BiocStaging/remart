@@ -3,7 +3,7 @@
 #' @inheritParams biomaRt::getGene
 #' @param ... Ignored. Used to catch no longer necessary parameters such as
 #'   `mart` from \pkg{biomaRt} functions.
-#' @inheritParams getBM species
+#' @inheritParams getBM species version
 #'
 #' @returns A data frame containing the following gene annotations for the
 #'   requested IDs:

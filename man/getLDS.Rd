@@ -38,6 +38,9 @@ using the function \code{\link[biomaRt:listFilters]{listFilters()}}.}
 \code{mart}, \code{martL}, \code{verbose}, \code{uniqueRows} and \code{bmHeader} from
 \pkg{biomaRt} functions.}
 
+\item{version}{Ensembl version to use for the query. If \code{NULL}, the latest
+version will be used.}
+
 \item{species}{Ensembl name (e.g. \code{"mouse"} or \code{"mus_musculus"}) of the
 species to look Ensembl IDs for if, e.g., \code{external_gene_name} is provided
 in \code{filters}. In \pkg{biomaRt}, this was inferred from the \code{mart}

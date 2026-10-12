@@ -4,7 +4,7 @@
 #' @param ... Ignored. Used to catch no longer necessary parameters such as
 #'   `mart`, `martL`, `verbose`, `uniqueRows` and `bmHeader` from
 #'   \pkg{biomaRt} functions.
-#' @inheritParams getBM species
+#' @inheritParams getBM species version
 #' @param speciesL Ensembl name (e.g. `"mouse"` or `"mus_musculus"`) of the
 #'   species to look up orthologues in. This replaces the `martL` argument
 #'   used in \pkg{biomaRt}, as connections to Ensembl datasets are no longer
