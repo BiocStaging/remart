@@ -1,0 +1,20 @@
+{
+    "ENSMUSG00000018411": {
+        "strand": 1,
+        "seq_region_name": "11",
+        "end": 104222916,
+        "assembly_name": "GRCm39",
+        "object_type": "Gene",
+        "source": "ensembl_havana",
+        "canonical_transcript": "ENSMUST00000106989.3",
+        "species": "mus_musculus",
+        "version": 18,
+        "description": "microtubule-associated protein tau [Source:MGI Symbol;Acc:MGI:97180]",
+        "display_name": "Mapt",
+        "start": 104122216,
+        "biotype": "protein_coding",
+        "db_type": "core",
+        "logic_name": "ensembl_havana_gene_mus_musculus",
+        "id": "ENSMUSG00000018411"
+    }
+}

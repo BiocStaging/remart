@@ -1,0 +1,20 @@
+{
+    "ENSG00000004939": {
+        "species": "homo_sapiens",
+        "id": "ENSG00000004939",
+        "end": 44268162,
+        "strand": -1,
+        "display_name": "SLC4A1",
+        "version": 17,
+        "source": "ensembl_havana",
+        "seq_region_name": "17",
+        "db_type": "core",
+        "description": "solute carrier family 4 member 1 (Diego blood group) [Source:HGNC Symbol;Acc:HGNC:11027]",
+        "start": 44248390,
+        "assembly_name": "GRCh38",
+        "object_type": "Gene",
+        "logic_name": "ensembl_havana_gene_homo_sapiens",
+        "canonical_transcript": "ENST00000262418.12",
+        "biotype": "protein_coding"
+    }
+}

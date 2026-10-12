@@ -1,0 +1,38 @@
+{
+    "ENSG00000157764": {
+        "db_type": "core",
+        "logic_name": "ensembl_havana_gene_homo_sapiens",
+        "id": "ENSG00000157764",
+        "description": "B-Raf proto-oncogene, serine/threonine kinase [Source:HGNC Symbol;Acc:HGNC:1097]",
+        "start": 140719327,
+        "display_name": "BRAF",
+        "biotype": "protein_coding",
+        "end": 140924929,
+        "assembly_name": "GRCh38",
+        "seq_region_name": "7",
+        "object_type": "Gene",
+        "species": "homo_sapiens",
+        "version": 14,
+        "source": "ensembl_havana",
+        "canonical_transcript": "ENST00000646891.2",
+        "strand": -1
+    },
+    "ENSG00000004939": {
+        "db_type": "core",
+        "logic_name": "ensembl_havana_gene_homo_sapiens",
+        "id": "ENSG00000004939",
+        "description": "solute carrier family 4 member 1 (Diego blood group) [Source:HGNC Symbol;Acc:HGNC:11027]",
+        "display_name": "SLC4A1",
+        "biotype": "protein_coding",
+        "start": 44248390,
+        "end": 44268141,
+        "assembly_name": "GRCh38",
+        "seq_region_name": "17",
+        "object_type": "Gene",
+        "version": 16,
+        "species": "homo_sapiens",
+        "canonical_transcript": "ENST00000262418.12",
+        "source": "ensembl_havana",
+        "strand": -1
+    }
+}

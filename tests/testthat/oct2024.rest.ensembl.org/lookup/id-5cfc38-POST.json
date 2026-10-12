@@ -1,0 +1,20 @@
+{
+    "ENSMUSG00000006574": {
+        "db_type": "core",
+        "id": "ENSMUSG00000006574",
+        "logic_name": "ensembl_havana_gene_mus_musculus",
+        "description": "solute carrier family 4 (anion exchanger), member 1 [Source:MGI Symbol;Acc:MGI:109393]",
+        "start": 102239650,
+        "display_name": "Slc4a1",
+        "biotype": "protein_coding",
+        "seq_region_name": "11",
+        "end": 102257029,
+        "assembly_name": "GRCm39",
+        "source": "ensembl_havana",
+        "canonical_transcript": "ENSMUST00000006749.10",
+        "version": 16,
+        "species": "mus_musculus",
+        "object_type": "Gene",
+        "strand": -1
+    }
+}

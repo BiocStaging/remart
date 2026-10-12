@@ -1,0 +1,20 @@
+{
+    "ENSMUSG00000002413": {
+        "db_type": "core",
+        "id": "ENSMUSG00000002413",
+        "logic_name": "ensembl_havana_gene_mus_musculus",
+        "description": "Braf transforming gene [Source:MGI Symbol;Acc:MGI:88190]",
+        "start": 39580171,
+        "biotype": "protein_coding",
+        "display_name": "Braf",
+        "seq_region_name": "6",
+        "assembly_name": "GRCm39",
+        "end": 39702397,
+        "canonical_transcript": "ENSMUST00000002487.15",
+        "source": "ensembl_havana",
+        "species": "mus_musculus",
+        "version": 16,
+        "object_type": "Gene",
+        "strand": -1
+    }
+}

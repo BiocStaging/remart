@@ -1,0 +1,20 @@
+{
+    "ENSMUSG00000002985": {
+        "end": 19433113,
+        "assembly_name": "GRCm39",
+        "seq_region_name": "7",
+        "object_type": "Gene",
+        "version": 17,
+        "species": "mus_musculus",
+        "source": "ensembl_havana",
+        "canonical_transcript": "ENSMUST00000174064.9",
+        "strand": -1,
+        "db_type": "core",
+        "logic_name": "ensembl_havana_gene_mus_musculus",
+        "id": "ENSMUSG00000002985",
+        "description": "apolipoprotein E [Source:MGI Symbol;Acc:MGI:88057]",
+        "start": 19430034,
+        "display_name": "Apoe",
+        "biotype": "protein_coding"
+    }
+}

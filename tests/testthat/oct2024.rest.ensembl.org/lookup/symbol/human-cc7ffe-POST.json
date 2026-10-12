@@ -1,0 +1,38 @@
+{
+    "MAPT": {
+        "display_name": "MAPT",
+        "start": 45894527,
+        "biotype": "protein_coding",
+        "description": "microtubule associated protein tau [Source:HGNC Symbol;Acc:HGNC:6893]",
+        "logic_name": "ensembl_havana_gene_homo_sapiens",
+        "id": "ENSG00000186868",
+        "db_type": "core",
+        "strand": 1,
+        "object_type": "Gene",
+        "species": "human",
+        "version": 18,
+        "source": "ensembl_havana",
+        "canonical_transcript": "ENST00000262410.10",
+        "end": 46028334,
+        "assembly_name": "GRCh38",
+        "seq_region_name": "17"
+    },
+    "APOE": {
+        "seq_region_name": "19",
+        "end": 44909393,
+        "assembly_name": "GRCh38",
+        "canonical_transcript": "ENST00000252486.9",
+        "source": "ensembl_havana",
+        "species": "human",
+        "version": 10,
+        "object_type": "Gene",
+        "strand": 1,
+        "db_type": "core",
+        "id": "ENSG00000130203",
+        "logic_name": "ensembl_havana_gene_homo_sapiens",
+        "description": "apolipoprotein E [Source:HGNC Symbol;Acc:HGNC:613]",
+        "display_name": "APOE",
+        "biotype": "protein_coding",
+        "start": 44905791
+    }
+}

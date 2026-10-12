@@ -1,7 +1,3 @@
-skip_on_ci()
-skip_on_bioc()
-skip_if_offline("rest.ensembl.org")
-
 test_that("single and multiple getSequence() calls are identical", {
   multi_call <- getSequence(
     seqType = "gene_exon_intron",
@@ -44,7 +40,8 @@ test_that("getSequence() can return peptide sequence", {
   peptide_seq <- getSequence(
     seqType = "peptide",
     type = "ensembl_gene_id",
-    id = "ENSG00000157764"
+    id = "ENSG00000157764",
+    version = "may2024"
   ) |>
     expect_no_error() |>
     expect_no_warning()

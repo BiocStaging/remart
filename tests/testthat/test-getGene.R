@@ -1,7 +1,3 @@
-skip_on_ci()
-skip_on_bioc()
-skip_if_offline("rest.ensembl.org")
-
 test_that("single and multiple getGene() calls are identical", {
   expect_warning(
     multi_call <- getGene(
@@ -52,7 +48,8 @@ test_that("getGene() works with gene symbols", {
     res <- getGene(
       id = c("APOE", "MAPT"),
       type = "external_gene_name",
-      species = "human"
+      species = "human",
+      version = "oct2024"
     ),
     "'band' column information is not available"
   )

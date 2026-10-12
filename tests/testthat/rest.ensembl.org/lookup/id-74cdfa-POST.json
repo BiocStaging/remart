@@ -1,0 +1,20 @@
+{
+    "ENSG00000157764": {
+        "canonical_transcript": "ENST00000646891.2",
+        "source": "ensembl_havana",
+        "assembly_name": "GRCh38",
+        "biotype": "protein_coding",
+        "db_type": "core",
+        "end": 140925199,
+        "logic_name": "ensembl_havana_gene_homo_sapiens",
+        "start": 140719327,
+        "seq_region_name": "7",
+        "strand": -1,
+        "id": "ENSG00000157764",
+        "description": "B-Raf proto-oncogene, serine/threonine kinase [Source:HGNC Symbol;Acc:HGNC:1097]",
+        "display_name": "BRAF",
+        "object_type": "Gene",
+        "version": 16,
+        "species": "homo_sapiens"
+    }
+}

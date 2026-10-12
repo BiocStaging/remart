@@ -10,9 +10,12 @@
 
   # Take into account redirect early to avoid POST params being dropped on
   # redirect
-  httr2::request(url) |>
-    httr2::req_user_agent(REMART_USER_AGENT) |>
-    httr2::req_method("HEAD") |>
-    httr2::req_perform() |>
-    httr2::resp_url()
+  if (grepl("e[0-9]+", version)) {
+    url <- httr2::request(url) |>
+      httr2::req_user_agent(REMART_USER_AGENT) |>
+      httr2::req_method("HEAD") |>
+      httr2::req_perform() |>
+      httr2::resp_url()
+  }
+  return(url)
 }

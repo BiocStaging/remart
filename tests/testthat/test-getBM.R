@@ -1,7 +1,3 @@
-skip_on_bioc()
-skip_on_ci()
-skip_if_offline("rest.ensembl.org")
-
 test_that("single and multiple getBM() calls are identical", {
   # Gene attributes only
   multi_call <- getBM(
@@ -108,7 +104,8 @@ test_that("getBM() on transcript IDs can return gene level info", {
       "description"
     ),
     filters = "ensembl_transcript_id",
-    values = c("ENST00000357654", "ENST00000450305")
+    values = c("ENST00000357654", "ENST00000450305"),
+    version = "oct2024"
   ) |>
     expect_no_error() |>
     expect_no_warning()
@@ -138,7 +135,8 @@ test_that("getBM() on gene symbols can return gene level info", {
     ),
     filters = "external_gene_name",
     values = c("APOE", "MAPT"),
-    species = "human"
+    species = "human",
+    version = "oct2024"
   ) |>
     expect_no_error() |>
     expect_no_warning()
