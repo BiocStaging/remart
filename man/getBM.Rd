@@ -63,6 +63,7 @@ Supported attributes: \code{ensembl_gene_id}, \code{ensembl_transcript_id},
 \code{gene_biotype}, \code{transcript_biotype}, \code{version}.
 }
 \examples{
+\donttest{
 attribs <- c("ensembl_gene_id", "external_gene_name", "chromosome_name")
 getBM(
   attributes = attribs,
@@ -95,4 +96,5 @@ getBM(
   species = "human",
   version = "may2025"
 )
+}
 }

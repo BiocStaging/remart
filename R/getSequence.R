@@ -10,7 +10,8 @@
 #' @export
 #'
 #' @examples
-#' remart::getSequence(
+#' \donttest{
+#' getSequence(
 #'   seqType = "gene_exon_intron",
 #'   type = "ensembl_gene_id",
 #'   id = "ENSG00000001497"
@@ -20,19 +21,20 @@
 #'  "ENSG00000003987",
 #'  "ENSG00000004939"
 #' )
-#' remart::getSequence(
+#' getSequence(
 #'   seqType = "gene_exon_intron",
 #'   type = "ensembl_gene_id",
 #'   id = ids
 #' )
 #'
 #' # Retrieve sequences from a specific Ensembl release.
-#' remart::getSequence(
+#' getSequence(
 #'   seqType = "cdna",
 #'   type = "ensembl_gene_id",
 #'   id = "ENSG00000001497",
 #'   version = 114
 #' )
+#' }
 getSequence <- function(
   chromosome,
   start,

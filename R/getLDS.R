@@ -29,6 +29,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' getLDS(
 #'   attributes = c("ensembl_gene_id", "external_gene_name"),
 #'   filters = "ensembl_gene_id",
@@ -57,6 +58,7 @@
 #'   speciesL = "mouse",
 #'   version = 114
 #' )
+#' }
 getLDS <- function(
   attributes,
   filters = "",

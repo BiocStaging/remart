@@ -35,6 +35,7 @@
 #' @export
 #'
 #' @examples
+#' \donttest{
 #' attribs <- c("ensembl_gene_id", "external_gene_name", "chromosome_name")
 #' getBM(
 #'   attributes = attribs,
@@ -67,6 +68,7 @@
 #'   species = "human",
 #'   version = "may2025"
 #' )
+#' }
 getBM <- function(
   attributes,
   filters = "",

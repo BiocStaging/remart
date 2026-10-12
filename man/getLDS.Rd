@@ -73,6 +73,7 @@ Supported filters/attributes (for both \code{filters}/\code{attributes} and
 Only \code{"ensembl_gene_id"} and \code{"external_gene_name"} are supported for \code{filter}.
 }
 \examples{
+\donttest{
 getLDS(
   attributes = c("ensembl_gene_id", "external_gene_name"),
   filters = "ensembl_gene_id",
@@ -101,4 +102,5 @@ getLDS(
   speciesL = "mouse",
   version = 114
 )
+}
 }

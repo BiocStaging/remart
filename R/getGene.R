@@ -19,21 +19,22 @@
 #' @export
 #'
 #' @examples
-#' remart::getGene(
+#' \donttest{
+#' getGene(
 #'   "ENSG00000157764",
-#'   type = "ensembl_gene_id",
-#'   version = 114
+#'   type = "ensembl_gene_id"
 #' )
 #'
 #' ids <- c(
 #'  "ENSG00000003987",
 #'  "ENSG00000004939"
 #' )
-#' remart::getGene(
+#' getGene(
 #'   id = ids,
 #'   type = "ensembl_gene_id",
 #'   version = "may2025"
 #' )
+#' }
 getGene <- function(
   id,
   type = "ensembl_gene_id",
